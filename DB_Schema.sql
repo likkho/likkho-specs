@@ -1,8 +1,8 @@
 /* Schema */
 
-// User table
+DROP TABLE IF EXISTS `likkhodb`.`ldb_users`;
 CREATE TABLE `likkhodb`.`ldb_users` (
-  `user_id` INT NOT NULL,
+  `user_id` INT NOT NULL AUTO_INCREMENT,
   `user_full_name` VARCHAR(1000) NULL,
   `user_email` VARCHAR(1000) NULL,
   `user_login_type` INT NULL,
@@ -13,9 +13,9 @@ CREATE TABLE `likkhodb`.`ldb_users` (
   PRIMARY KEY (`user_id`),
   INDEX `user_login_type_index` (`user_login_type` ASC));
 
-// Community Table
+DROP TABLE IF EXISTS `likkhodb`.`ldb_community`;
 CREATE TABLE `likkhodb`.`ldb_community` (
-  `community_id` INT NOT NULL,
+  `community_id` INT NOT NULL AUTO_INCREMENT,
   `community_name` VARCHAR(1000) NOT NULL,
   `community_pic_url` VARCHAR(3999) NULL,
   `community_desc` VARCHAR(3999) NULL,
@@ -31,9 +31,9 @@ CREATE TABLE `likkhodb`.`ldb_community` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-// Posts table
+DROP TABLE IF EXISTS `likkhodb`.`ldb_posts`;
 CREATE TABLE `likkhodb`.`ldb_posts` (
-  `post_id` INT NOT NULL,
+  `post_id` INT NOT NULL  AUTO_INCREMENT,
   `post_title` VARCHAR(3999) NOT NULL,
   `post_text` TEXT NOT NULL,
   `post_url` VARCHAR(3999) NOT NULL,
@@ -62,9 +62,9 @@ CREATE TABLE `likkhodb`.`ldb_posts` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-// Comments
+DROP TABLE IF EXISTS `likkhodb`.`ldb_comments`;
 CREATE TABLE `likkhodb`.`ldb_comments` (
-  `comment_id` INT NOT NULL,
+  `comment_id` INT NOT NULL AUTO_INCREMENT,
   `post_id` INT NOT NULL,
   `comment_author_id` INT NOT NULL,
   `comment_text` TEXT NOT NULL,
@@ -87,9 +87,9 @@ CREATE TABLE `likkhodb`.`ldb_comments` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-// Likes
+DROP TABLE IF EXISTS `likkhodb`.`ldb_likes`;
 CREATE TABLE `likkhodb`.`ldb_likes` (
-  `like_id` INT NOT NULL,
+  `like_id` INT NOT NULL AUTO_INCREMENT,
   `post_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `liked_on` DATETIME NOT NULL,
@@ -108,17 +108,17 @@ CREATE TABLE `likkhodb`.`ldb_likes` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-// Tags
+DROP TABLE IF EXISTS `likkhodb`.`ldb_tags`;
 CREATE TABLE `likkhodb`.`ldb_tags` (
-  `tag_id` INT NOT NULL,
+  `tag_id` INT NOT NULL AUTO_INCREMENT,
   `tag_name` VARCHAR(1000) NOT NULL,
   `tag_rank` INT NOT NULL,
   `is_active` BIT NULL,
   PRIMARY KEY (`tag_id`));
 
-// Posts_tags
+DROP TABLE IF EXISTS `likkhodb`.`ldb_posts_tags`;
 CREATE TABLE `likkhodb`.`ldb_posts_tags` (
-  `posts_tags_id` INT NOT NULL,
+  `posts_tags_id` INT NOT NULL AUTO_INCREMENT,
   `post_id` INT NOT NULL,
   `tag_id` INT NOT NULL,
   `tagged_on` DATETIME NOT NULL,
@@ -137,9 +137,9 @@ CREATE TABLE `likkhodb`.`ldb_posts_tags` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-// followers
+DROP TABLE IF EXISTS `likkhodb`.`ldb_followers`;
 CREATE TABLE `likkhodb`.`ldb_followers` (
-  `follower_id` INT NOT NULL,
+  `follower_id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `following_user_id` INT NOT NULL,
   `followed_on` DATETIME NOT NULL,
@@ -158,9 +158,9 @@ CREATE TABLE `likkhodb`.`ldb_followers` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-// community_followers
+DROP TABLE IF EXISTS `likkhodb`.`ldb_community_followers`;
 CREATE TABLE `likkhodb`.`ldb_community_followers` (
-  `community_follower_id` INT NOT NULL,
+  `community_follower_id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `community_id` INT NOT NULL,
   `followed_on` DATETIME NOT NULL,
@@ -179,9 +179,9 @@ CREATE TABLE `likkhodb`.`ldb_community_followers` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-// saved_posts
+DROP TABLE IF EXISTS `likkhodb`.`ldb_saved_posts`;
 CREATE TABLE `likkhodb`.`ldb_saved_posts` (
-  `saved_post_id` INT NOT NULL,
+  `saved_post_id` INT NOT NULL AUTO_INCREMENT,
   `post_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `saved_on` DATETIME NOT NULL,
@@ -201,9 +201,9 @@ CREATE TABLE `likkhodb`.`ldb_saved_posts` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-// favorite_posts
+DROP TABLE IF EXISTS `likkhodb`.`ldb_favorite_posts`;
 CREATE TABLE `likkhodb`.`ldb_favorite_posts` (
-  `favorite_post_id` INT NOT NULL,
+  `favorite_post_id` INT NOT NULL AUTO_INCREMENT,
   `post_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `favorited_on` DATETIME NOT NULL,
@@ -222,9 +222,9 @@ CREATE TABLE `likkhodb`.`ldb_favorite_posts` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-// popular posts
-CREATE TABLE `likkhodb`.`ldb_ popular_posts` (
-  `popular_post_id` INT NOT NULL,
+DROP TABLE IF EXISTS `likkhodb`.`ldb_popular_posts`;
+CREATE TABLE `likkhodb`.`ldb_popular_posts` (
+  `popular_post_id` INT NOT NULL AUTO_INCREMENT,
   `post_id` INT NOT NULL,
   `num_likes` BIGINT NULL,
   `num_reads` BIGINT NULL,
